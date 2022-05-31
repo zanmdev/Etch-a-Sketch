@@ -1,0 +1,14 @@
+#container {
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square{
+    background-color: blue;
+}
+
+.hover{
+    background-color: rgb(59, 58, 58);
+}
