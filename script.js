@@ -1,10 +1,17 @@
 const container = document.querySelector("#container");
 const regen = document.querySelector(".regen");
 const reset = document.querySelector(".reset");
+const rainbowButton = document.querySelector(".rainbow");
+
+let rainbow = false;
+
 
 
 
 reset.addEventListener("click", clearBoard);
+
+
+rainbowButton.addEventListener("click", setRainbow);
 
 regen.addEventListener("click", ()=>{
     let numBoxes = prompt("Enter the grid size Ex. 16x16","16");
@@ -18,21 +25,33 @@ regen.addEventListener("click", ()=>{
 
 function setHover(){
     if(!this.classList.contains("hover")){
-        let randomColor = Math.floor(Math.random()*16777215).toString(16);
         this.classList.add("hover");
-        this.style.backgroundColor= "#"+randomColor;
-        console.log(this.style.backgroundColor);
-    }
-    
+        if(rainbow){
+            let randomColor = Math.floor(Math.random()*16777215).toString(16);
+            this.style.backgroundColor= "#"+randomColor;
+        }else{
+            this.style.backgroundColor= "black";
+        }
 
-    
+    }
+}
+
+function setRainbow(){
+    if(!rainbow){
+        rainbow = true; 
+        clearBoard();
+    }else{
+        rainbow = false;
+    }
 }
 
 function clearBoard(){
     let boxes = document.querySelectorAll(".square")
     boxes.forEach(box => {
-        box.classList.remove("hover");
-
+        if(box.classList.contains("hover")){
+            box.classList.remove("hover");
+            box.style.backgroundColor ="White";
+        }
     });
 }
 
