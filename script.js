@@ -18,9 +18,12 @@ regen.addEventListener("click", ()=>{
 
 function setHover(){
     if(!this.classList.contains("hover")){
+        let randomColor = Math.floor(Math.random()*16777215).toString(16);
         this.classList.add("hover");
-        console.log("CHANGED");
+        this.style.backgroundColor= "#"+randomColor;
+        console.log(this.style.backgroundColor);
     }
+    
 
     
 }
