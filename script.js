@@ -1,14 +1,45 @@
 const container = document.querySelector("#container");
+const regen = document.querySelector(".regen");
+const reset = document.querySelector(".reset");
 
+
+
+reset.addEventListener("click", clearBoard);
+
+regen.addEventListener("click", ()=>{
+    let numBoxes = prompt("Enter the grid size Ex. 16x16","16");
+    if (!isNaN(numBoxes) && numBoxes > 1){
+        clearBoard();
+        generateBoard(numBoxes);
+    }else{
+        alert("Please enter valid number");
+    }
+})
 
 function setHover(){
-    this.classList.add("hover");
-    console.log("CHANGED");
-    this.removeEventListener("mouseover",setHover);
+    if(!this.classList.contains("hover")){
+        this.classList.add("hover");
+        console.log("CHANGED");
+    }
+
+    
+}
+
+function clearBoard(){
+    let boxes = document.querySelectorAll(".square")
+    boxes.forEach(box => {
+        box.classList.remove("hover");
+
+    });
 }
 
 
+
 function generateBoard(boxNum = 16){
+
+    while(container.firstChild){
+        container.removeChild(container.firstChild);
+    }
 
     let boxSize = 600/boxNum;
 
